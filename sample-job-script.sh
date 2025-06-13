@@ -4,4 +4,6 @@
 #SBATCH --partition=intelsr_devel
 #SBATCH --ntasks=3
 
+echo "Running sample job script..."
+
 echo "This file was created using a SLURM job" > "$HOME/generated_by_slurm.txt"
