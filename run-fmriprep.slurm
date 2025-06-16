@@ -1,5 +1,12 @@
 #!/usr/bin/env bash
 
+#SBATCH --partition=intelsr_short
+#SBATCH --cpus-per-task=32
+#SBATCH --mem=32000
+#SBATCH --mail-type=END,FAIL,TIME_LIMIT
+#SBATCH --vvv
+#SBATCH --time=01:00:00
+
 set -Eeuo pipefail
 
 participant_label="$1"
