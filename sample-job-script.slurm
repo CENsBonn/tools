@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-#SBATCH --job-name=sebelino-job
+#SBATCH --job-name=sample-cens-job
 #SBATCH --time=00:00:10
 #SBATCH --partition=intelsr_devel
 #SBATCH --ntasks=3
