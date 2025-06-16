@@ -14,7 +14,7 @@ fmriprep_dir="$basedir/fmriprep"
 fs_license_destination="$fmriprep_dir/license.txt"
 img="$fmriprep_dir/fmriprep-${FMRIPREP_VERSION}.simg"
 
-mkdir -p "$workdir" "$datadir" "$outdir"
+mkdir -p "$workdir" "$datadir" "$outdir" "$fmriprep_dir"
 
 cp "$fs_license_source" "$fs_license_destination"
 
