@@ -4,7 +4,7 @@ set -Eeuo pipefail
 
 fs_license_source="$1"
 
-FMRIPREP_VERSION=20.2.0
+FMRIPREP_VERSION=25.1.1
 
 basedir="$HOME/maindir"
 workdir="$basedir/work"
@@ -20,7 +20,7 @@ cp "$fs_license_source" "$fs_license_destination"
 
 if [ ! -f "$img" ]; then
 	cd "$fmriprep_dir"
-	singularity build "$img" "docker://poldracklab/fmriprep:${FMRIPREP_VERSION}"
+	singularity build "$img" "docker://nipreps/fmriprep:${FMRIPREP_VERSION}"
 else
 	echo "$img is already built."
 fi
