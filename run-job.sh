@@ -13,7 +13,8 @@ SSH_HOST=marvin
 input_workspace="$1"
 slurm_script="$2"
 
-upload_dir="jobs/job_$(date +%Y%m%d_%H%M%S)"
+random_str="$(head /dev/urandom | tr -dc 'a-zA-Z0-9' | head -c4)"
+upload_dir="jobs/job_$(date +%Y%m%d_%H%M%S)_${random_str}"
 
 ssh marvin "[ -d tools ] || git clone https://github.com/CENsBonn/tools"
 ssh marvin mkdir -p "$upload_dir"

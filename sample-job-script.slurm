@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-#SBATCH --job-name=sample-cens-job
 #SBATCH --output=slurm.out
 #SBATCH --time=00:00:10
 #SBATCH --partition=intelsr_devel
