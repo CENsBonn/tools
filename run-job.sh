@@ -13,6 +13,11 @@ SSH_HOST=marvin
 input_workspace="$1"
 slurm_script="$2"
 
+if ! ssh marvin ws_list | ./ws_list_to_json.py | jq -e "has(\"${input_workspace}\")" >/dev/null; then
+  >&2 echo "Workspace '${input_workspace}' does not exist. Exiting."
+  exit 1
+fi
+
 random_str="$(head /dev/urandom | tr -dc 'a-zA-Z0-9' | head -c4)"
 upload_dir="jobs/job_$(date +%Y%m%d_%H%M%S)_${random_str}"
 
