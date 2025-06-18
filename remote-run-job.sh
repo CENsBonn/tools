@@ -27,4 +27,4 @@ ln -s "$input_dir" input
 ln -s "$output_dir" output
 ln -s "$work_dir" work
 slurm_script="$(ls ./*.slurm)"
-sbatch "$slurm_script" ${@:3}
+sbatch --job-name "$job_name" "$slurm_script" ${@:3}
