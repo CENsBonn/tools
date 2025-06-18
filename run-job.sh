@@ -2,7 +2,7 @@
 
 set -Eeuo pipefail
 
-if [ $# != 2 ]; then
+if [[ $# -lt 2 ]]; then
   >&2 echo "Usage:   $0 <input_workspace> <slurm_script>"
   >&2 echo "Example: $0 reproin sample-job-script.slurm"
   exit 1
@@ -15,7 +15,7 @@ slurm_script="$2"
 
 upload_dir="jobs/job_$(date +%Y%m%d_%H%M%S)"
 
-ssh marvin [ -d tools ] || git clone https://github.com/CENsBonn/tools
+ssh marvin "[ -d tools ] || git clone https://github.com/CENsBonn/tools"
 ssh marvin mkdir -p "$upload_dir"
 ssh marvin rm -f "jobs/latest"
 ssh marvin ln -s "$(basename "$upload_dir")" "jobs/latest"
