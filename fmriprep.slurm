@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+#SBATCH --output=slurm.out
 #SBATCH --partition=intelsr_short
 #SBATCH --cpus-per-task=32
 #SBATCH --mem=32000

@@ -17,6 +17,7 @@ upload_dir="jobs/job_$(date +%Y%m%d_%H%M%S)"
 
 ssh marvin "[ -d tools ] || git clone https://github.com/CENsBonn/tools"
 ssh marvin mkdir -p "$upload_dir"
+echo "Created job directory: $upload_dir"
 ssh marvin rm -f "jobs/latest"
 ssh marvin ln -s "$(basename "$upload_dir")" "jobs/latest"
 rsync -av --info=progress2 "$slurm_script" "${SSH_HOST}:~/${upload_dir}"
