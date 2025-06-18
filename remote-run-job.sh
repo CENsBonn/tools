@@ -15,5 +15,4 @@ ws_allocate "$work_workspace" 1
 
 cd "$upload_dir"
 slurm_script="$(ls ./*.slurm)"
-echo "HOY[${@:3}]"
-sbatch "$slurm_script"
+sbatch "$slurm_script" ${@:3}
