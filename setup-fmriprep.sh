@@ -20,7 +20,7 @@ cp "$fs_license_source" "$fs_license_destination"
 
 if [ ! -f "$img" ]; then
 	cd "$fmriprep_dir"
-	singularity build "$img" "docker://nipreps/fmriprep:${FMRIPREP_VERSION}"
+	apptainer build "$img" "docker://nipreps/fmriprep:${FMRIPREP_VERSION}"
 else
 	echo "$img is already built."
 fi
