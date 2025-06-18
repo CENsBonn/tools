@@ -2,4 +2,6 @@
 
 set -Eeuo pipefail
 
-ssh marvin "tail -f jobs/latest/slurm.out"
+path="${1:-jobs/latest/slurm.out}"
+
+ssh marvin "tail -f $path"
