@@ -23,5 +23,8 @@ output_dir="$(ws_list | "$HOME/tools/ws_list_to_json.py" | get_workspace_directo
 work_dir="$(ws_list | "$HOME/tools/ws_list_to_json.py" | get_workspace_directory "$work_workspace")"
 
 cd "$upload_dir"
+ln -s "$input_dir" input
+ln -s "$output_dir" output
+ln -s "$work_dir" work
 slurm_script="$(ls ./*.slurm)"
 sbatch "$slurm_script" "$input_dir" "$output_dir" "$work_dir" ${@:3}
