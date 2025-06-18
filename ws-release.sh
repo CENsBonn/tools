@@ -21,6 +21,7 @@ read -r -p "Release these workspaces? [y/n]" confirm
 
 if [[ "$confirm" =~ ^[Yy]$ ]]; then
 	for workspace in $selected_workspaces; do
+		echo "Releasing workspace '$workspace'..."
 		ssh "$SSH_HOST" "ws_release '$workspace'"
 	done
 else
