@@ -1,10 +1,15 @@
 #!/usr/bin/env bash
+
 #SBATCH --job-name=sample-cens-job
 #SBATCH --time=00:00:10
 #SBATCH --partition=intelsr_devel
 #SBATCH --ntasks=3
 #SBATCH --mail-type=END,FAIL,TIME_LIMIT
 
-echo "Running sample job script..."
+set -Eeuo pipefail
 
-echo "This file was created using a SLURM job" > "$HOME/generated_by_slurm.txt"
+echo "Running sample job script with arguments:" "$@"
+
+input_dir="$1"
+
+ls "${input_dir}"
