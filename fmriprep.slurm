@@ -5,16 +5,17 @@
 #SBATCH --cpus-per-task=32
 #SBATCH --mem=32000
 #SBATCH --mail-type=END,FAIL,TIME_LIMIT
-#SBATCH --time=01:00:00
+#SBATCH --time=03:00:00
 
 set -Eeuo pipefail
 
 NCORES=32
-PARTICIPANT_LABEL="sub-001"
 
-input_dir="$1"
-output_dir="$2"
-work_dir="$3"
+participant_label="$1"
+
+input_dir="input"
+output_dir="output"
+work_dir="work"
 
 resources_dir="$HOME/fmriprep"
 fs_license="$resources_dir/license.txt"
@@ -30,7 +31,7 @@ apptainer run \
 	"/data" \
 	"/output" \
 	participant \
-	--participant-label "$PARTICIPANT_LABEL" \
+	--participant-label "$participant_label" \
 	--work-dir "/work" \
 	--fs-license-file "/resources/$(basename "$fs_license")" \
 	--write-graph \
