@@ -7,7 +7,6 @@ CONDA_ENV_NAME="fmri"
 setup_deps() {
   module load Miniforge3
   conda init
-  source "$HOME/.bashrc"
   conda create -y -n "$CONDA_ENV_NAME"
   conda activate "$CONDA_ENV_NAME"
   conda install -c conda-forge dcm2niix
