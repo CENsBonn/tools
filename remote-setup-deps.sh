@@ -14,6 +14,8 @@ setup_deps() {
   conda install -y -c conda-forge datalad
   conda install -y -c conda-forge bids-validator
   conda install -y -c conda-forge deno
+  conda install -y -c conda-forge tree
+  conda install -y -c conda-forge jq
   pip install heudiconv
   pip install fmriprep-docker
 }
