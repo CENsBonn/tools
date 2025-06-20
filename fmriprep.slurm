@@ -37,3 +37,5 @@ apptainer run \
 	--write-graph \
 	--ignore slicetiming \
 	--nprocs "$NCORES"
+
+echo "apptainer exited with code: $?"
