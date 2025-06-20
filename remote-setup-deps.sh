@@ -10,7 +10,7 @@ setup_deps() {
   source activate base
   conda create -y -n "$CONDA_ENV_NAME"
   conda activate "$CONDA_ENV_NAME"
-  conda install -c conda-forge dcm2niix
+  conda install -y -c conda-forge dcm2niix
   conda install -y -c conda-forge datalad
   conda install -y -c conda-forge bids-validator
   conda install -y -c conda-forge deno
