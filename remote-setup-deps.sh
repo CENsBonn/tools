@@ -2,11 +2,7 @@
 
 set -Eeuo pipefail
 
-CONDA_ENV_NAME="fmri"
-
-if conda info --envs | grep -q -w "$CONDA_ENV_NAME"; then
-  echo "Conda environment '$CONDA_ENV_NAME' already exists. Skipping conda setup."
-else
+setup_deps() {
   module load Miniforge3
   conda init
   source "$HOME/.bashrc"
@@ -18,4 +14,15 @@ else
   conda install -y -c conda-forge deno
   pip install heudiconv
   pip install fmriprep-docker
+}
+
+CONDA_ENV_NAME="fmri"
+
+
+if ! which conda; then
+  setup_deps
+elif ! conda info --envs | grep -q -w "$CONDA_ENV_NAME"; then
+  setup_deps
+else
+  echo "Conda environment '$CONDA_ENV_NAME' already exists. Skipping conda setup."
 fi
