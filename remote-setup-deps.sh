@@ -2,6 +2,8 @@
 
 set -Eeuo pipefail
 
+CONDA_ENV_NAME="fmri"
+
 setup_deps() {
   module load Miniforge3
   conda init
@@ -15,8 +17,6 @@ setup_deps() {
   pip install heudiconv
   pip install fmriprep-docker
 }
-
-CONDA_ENV_NAME="fmri"
 
 
 if ! which conda; then
