@@ -29,3 +29,9 @@ def infotodict(seqinfo):
             info[fmap_phase].append(s.series_id)
 
     return info
+
+def infotoids(seqinfo, outdir):
+    """Extract subject ID and session ID from DICOM info"""
+    subj = seqinfo[0].patient_id
+    ses = None  # or extract session info if applicable
+    return subj, ses, None
