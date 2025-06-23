@@ -10,7 +10,7 @@ get_workspace_directory() {
 input_workspace="$1"
 output_workspace="$2"
 
-ws_allocate "$input_workspace" 50
+ws_allocate "$output_workspace" 50
 
 input_dir="$(ws_list | "$HOME/tools/ws_list_to_json.py" | get_workspace_directory "$input_workspace")"
 output_dir="$(ws_list | "$HOME/tools/ws_list_to_json.py" | get_workspace_directory "$output_workspace")"
