@@ -4,6 +4,7 @@
 #SBATCH --partition=intelsr_short
 #SBATCH --cpus-per-task=32
 #SBATCH --mem=32000
+#SBATCH --export=NONE
 #SBATCH --mail-type=END,FAIL,TIME_LIMIT
 #SBATCH --time=03:00:00
 
