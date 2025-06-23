@@ -20,7 +20,6 @@ setup_deps() {
   pip install fmriprep-docker
 }
 
-
 if ! which conda; then
   setup_deps
 elif ! conda info --envs | grep -q -w "$CONDA_ENV_NAME"; then
