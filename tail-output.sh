@@ -4,4 +4,4 @@ set -Eeuo pipefail
 
 path="${1:-jobs/latest/slurm.out}"
 
-ssh marvin "tail -f $path" -n 1000
+ssh marvin "while [ ! -f '$path' ]; do sleep 1; done; tail -f $path" -n 1000
