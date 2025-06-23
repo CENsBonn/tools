@@ -3,7 +3,7 @@
 set -Eeuo pipefail
 
 if [[ $# -lt 2 ]]; then
-  >&2 echo "Usage:   $0 <input_workspace> <slurm_script>"
+  >&2 echo "Usage:   $0 <input_workspace> <slurm_script> [<arguments_to_slurm_script>]"
   >&2 echo "Example: $0 reproin sample-job-script.slurm"
   exit 1
 fi
