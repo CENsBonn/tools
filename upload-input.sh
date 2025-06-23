@@ -14,11 +14,6 @@ source_path="$1"
 workspace_name="$2"
 expiry_days="$3"
 
-if [ ! -f "${source_path}/dataset_description.json" ]; then
-  >&2 echo "Error: Missing file: ${source_path}/dataset_description.json"
-  exit 1
-fi
-
 script_dir="$(dirname "$0")"
 
 input_dir_path="$(ssh "$SSH_HOST" ws_list | "${script_dir}/ws_list_to_json.py" | jq -r ".\"${workspace_name}\".workspace_directory")"
