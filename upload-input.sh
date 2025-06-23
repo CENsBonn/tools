@@ -14,7 +14,7 @@ source_path="$1"
 workspace_name="$2"
 expiry_days="$3"
 
-script_dir="$(dirname "$0")"
+script_dir="$(dirname "$(readlink -f "$0")")"
 
 input_dir_path="$(ssh "$SSH_HOST" ws_list | "${script_dir}/ws_list_to_json.py" | jq -r ".\"${workspace_name}\".workspace_directory")"
 

@@ -15,6 +15,6 @@ if [ ! -f "${source_path}/dataset_description.json" ]; then
   exit 1
 fi
 
-script_dir="$(dirname "$0")"
+script_dir="$(dirname "$(readlink -f "$0")")"
 
 "${script_dir}/upload-input.sh" "$1" "$2" "$3"
