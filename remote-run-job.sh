@@ -28,6 +28,6 @@ ln -s "$output_dir" output
 ln -s "$work_dir" work
 slurm_script="$(ls ./*.slurm)"
 
-./tools/pre-batch-hooks/find-subjects.sh
+"$HOME/tools/pre-batch-hooks/find-subjects.sh"
 
 sbatch --job-name "$job_name" $(cat sbatch_parameters.txt) "$slurm_script" ${@:3}
