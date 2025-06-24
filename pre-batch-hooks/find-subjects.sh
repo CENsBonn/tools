@@ -9,7 +9,7 @@ set -Eeuo pipefail
 
 input_directory="input"
 
-find "$input_directory" -maxdepth 1 -type d -name 'sub-*' > subjects.txt
+find "${input_directory%/}/" -maxdepth 1 -type d -name 'sub-*' > subjects.txt
 task_count="$(wc -l < subjects.txt)"
 
 if [ "$task_count" -eq 0 ]; then
