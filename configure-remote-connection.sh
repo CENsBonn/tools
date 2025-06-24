@@ -20,6 +20,9 @@ Host marvin
   HostName "${HOST_DOMAIN}"
   User ${hpc_username}
   IdentityFile ${private_key_path}
+  ControlMaster auto
+  ControlPath ~/.ssh/cm-%r@%h:%p
+  ControlPersist 10m
 EOF
 else
   echo -e "Host marvin is already present in $HOME/.ssh/config. Skipping.\n"
