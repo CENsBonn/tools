@@ -26,7 +26,7 @@ subject="${subjects[$SLURM_ARRAY_TASK_ID-1]}"
 echo "Running HeuDiConv for subject: $subject (array task ID: $SLURM_ARRAY_TASK_ID)"
 
 heudiconv \
-    -d "${input_dir}" \
+    -d "${input_dir}/sub-{subject}/*.dcm" \
     -c dcm2niix \
     --bids \
     -f "$heuristic" \
