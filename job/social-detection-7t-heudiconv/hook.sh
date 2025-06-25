@@ -3,7 +3,7 @@
 # Counts the number of directories starting with "sub-" within the input directory.
 #
 # Input: Path to a directory containing data to be processed by SLURM.
-# Output: An integer representing the number of SLURM tasks to be generated to process the data.
+# Output: Files: `subjects.txt` and `sbatch_parameters.txt`.
 
 set -Eeuo pipefail
 

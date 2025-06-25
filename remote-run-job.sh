@@ -9,6 +9,7 @@ get_workspace_directory() {
 
 input_workspace="$1"
 upload_dir="$2"
+pre_batch_hook="$3"
 
 job_name="$(basename "$upload_dir")"
 
@@ -28,6 +29,6 @@ ln -s "$output_dir" output
 ln -s "$work_dir" work
 slurm_script="$(ls ./*.slurm)"
 
-"$HOME/tools/pre-batch-hooks/find-subjects.sh"
+bash "$pre_batch_hook"
 
-sbatch --job-name "$job_name" $(cat sbatch_parameters.txt) "$slurm_script" ${@:3}
+sbatch --job-name "$job_name" $(cat sbatch_parameters.txt) "$slurm_script" ${@:4}
