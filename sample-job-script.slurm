@@ -18,4 +18,4 @@ echo "Input directory: $input_dir"
 echo "Output directory: $output_dir"
 echo "Work directory: $work_dir"
 
-echo "The $input_dir directory contains $(find "$input_dir/" -type f | wc -l) files." > "$output_dir/generated_by_sample_job.txt"
+echo "The $(realpath "$input_dir") directory contains $(find "$input_dir/" -type f | wc -l) files." > "$output_dir/generated_by_sample_job.txt"
