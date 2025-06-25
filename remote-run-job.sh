@@ -3,8 +3,8 @@
 set -Eeuo pipefail
 
 get_workspace_directory() {
-	workspace="$1"
-	python3 -c "import sys, json; data=json.load(sys.stdin); print(data[\"${workspace}\"][\"workspace_directory\"])"
+  workspace="$1"
+  python3 -c "import sys, json; data=json.load(sys.stdin); print(data[\"${workspace}\"][\"workspace_directory\"])"
 }
 
 input_workspace="$1"
@@ -29,6 +29,10 @@ ln -s "$output_dir" output
 ln -s "$work_dir" work
 slurm_script="$(ls ./*.slurm)"
 
-bash "$pre_batch_hook"
+if [ "$pre_batch_hook" = "__NONE__" ]; then
+  echo -n "" > sbatch_parameters.txt
+else
+  bash "$pre_batch_hook"
+fi
 
 sbatch --job-name "$job_name" $(cat sbatch_parameters.txt) "$slurm_script" ${@:4}
