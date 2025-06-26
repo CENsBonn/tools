@@ -38,7 +38,12 @@ else
   echo -n "" > sbatch_parameters.txt
 fi
 
-sbatch --job-name "$job_name" $(cat sbatch_parameters.txt) "$slurm_script" ${@:3}
+sbatch_params=""
+if [ -f sbatch_parameters.txt ]; then
+  sbatch_params="$(cat sbatch_parameters.txt)"
+fi
+
+sbatch --job-name "$job_name" $sbatch_params "$slurm_script" ${@:3}
 
 if [ -f "$post_batch_hook" ]; then
   echo "Executing post-batch hook..."
