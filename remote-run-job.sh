@@ -34,8 +34,6 @@ post_batch_hook="scripts/post.sh"
 if [ -f "$pre_batch_hook" ]; then
   echo "Executing pre-batch hook..."
   bash "$pre_batch_hook"
-else
-  echo -n "" > sbatch_parameters.txt
 fi
 
 sbatch_params=""
