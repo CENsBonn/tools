@@ -40,4 +40,6 @@ if [ -f sbatch_parameters.txt ]; then
   sbatch_params="$(cat sbatch_parameters.txt)"
 fi
 
+set -x
 sbatch --job-name "$job_name" $sbatch_params "$slurm_script" ${@:3}
+set +x
