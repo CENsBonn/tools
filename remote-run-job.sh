@@ -9,7 +9,6 @@ get_workspace_directory() {
 
 input_workspace="$1"
 upload_dir="$2"
-pre_batch_hook="$3"
 
 job_name="$(basename "$upload_dir")"
 
@@ -27,12 +26,21 @@ cd "$upload_dir"
 ln -s "$input_dir" input
 ln -s "$output_dir" output
 ln -s "$work_dir" work
-slurm_script="$(ls ./*.slurm)"
 
-if [ "$pre_batch_hook" = "__NONE__" ]; then
-  echo -n "" > sbatch_parameters.txt
-else
+slurm_script="scripts/job.slurm"
+pre_batch_hook="scripts/pre.sh"
+post_batch_hook="scripts/post.sh"
+
+if [ -f "$pre_batch_hook" ]; then
+  echo "Executing pre-batch hook..."
   bash "$pre_batch_hook"
+else
+  echo -n "" > sbatch_parameters.txt
 fi
 
-sbatch --job-name "$job_name" $(cat sbatch_parameters.txt) "$slurm_script" ${@:4}
+sbatch --job-name "$job_name" $(cat sbatch_parameters.txt) "$slurm_script" ${@:3}
+
+if [ -f "$post_batch_hook" ]; then
+  echo "Executing post-batch hook..."
+  bash "$post_batch_hook"
+fi
