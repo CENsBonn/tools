@@ -39,20 +39,21 @@ if [[ -z "$input_workspace" || -z "$target" ]]; then
 fi
 
 pre_batch_hook=""
-post_batch_hook=""
 if [ -d "$target" ]; then
   slurm_script="$target/job.slurm"
   if [ ! -f "$slurm_script" ]; then
     >&2 echo "No job.slurm file found in directory '$target'. Exiting."
     exit 1
   fi
-  if [ -f "${target}/pre.sh" ]; then
+  if [ -f "${target%/}/pre.sh" ]; then
     pre_batch_hook="${target}/pre.sh"
     echo "Found pre-batch hook: ${pre_batch_hook}"
   fi
-  if [ -f "${target}/post.sh" ]; then
-    post_batch_hook="${target}/post.sh"
-    echo "Found post-batch hook: ${post_batch_hook}"
+else
+  slurm_script="$target"
+  if [ ! -f "$slurm_script" ]; then
+    >&2 echo "File '$slurm_script' does not exist. Exiting."
+    exit 1
   fi
 fi
 
@@ -76,9 +77,6 @@ ssh "$SSH_HOST" mkdir "${upload_dir}/scripts"
 rsync -av --info=progress2 "$slurm_script" "${SSH_HOST}:~/${upload_dir}/scripts/"
 if [ -n "$pre_batch_hook" ]; then
   rsync -av --info=progress2 "$pre_batch_hook" "${SSH_HOST}:~/${upload_dir}/scripts/"
-fi
-if [ -n "$post_batch_hook" ]; then
-  rsync -av --info=progress2 "$post_batch_hook" "${SSH_HOST}:~/${upload_dir}/scripts/"
 fi
 
 ssh "$SSH_HOST" ./tools/remote-run-job.sh "$input_workspace" "$upload_dir" "${args_to_slurm[@]}"

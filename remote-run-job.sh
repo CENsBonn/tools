@@ -29,7 +29,6 @@ ln -s "$work_dir" work
 
 slurm_script="scripts/job.slurm"
 pre_batch_hook="scripts/pre.sh"
-post_batch_hook="scripts/post.sh"
 
 if [ -f "$pre_batch_hook" ]; then
   echo "Executing pre-batch hook..."
@@ -42,8 +41,3 @@ if [ -f sbatch_parameters.txt ]; then
 fi
 
 sbatch --job-name "$job_name" $sbatch_params "$slurm_script" ${@:3}
-
-if [ -f "$post_batch_hook" ]; then
-  echo "Executing post-batch hook..."
-  bash "$post_batch_hook"
-fi
