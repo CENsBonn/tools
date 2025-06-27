@@ -20,9 +20,7 @@ source activate base
 conda activate "$CONDA_ENV_NAME"
 
 readarray -t subjects < subjects.txt  # subjects.txt comes from the pre-batch hook
-
 subject="${subjects[$SLURM_ARRAY_TASK_ID-1]}"
-
 echo "Running HeuDiConv for subject: $subject (array task ID: $SLURM_ARRAY_TASK_ID)"
 
 heudiconv \
