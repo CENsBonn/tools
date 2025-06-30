@@ -2,15 +2,16 @@
 
 #SBATCH --output=slurm.out
 #SBATCH --partition=intelsr_medium
-#SBATCH --cpus-per-task=32
-#SBATCH --mem=32000
+#SBATCH --nodes=1
+#SBATCH --cpus-per-task=8
+#SBATCH --mem-per-cpu=4gb
 #SBATCH --export=NONE
 #SBATCH --mail-type=END,FAIL,TIME_LIMIT
 #SBATCH --time=10:00:00
 
 set -Eeuo pipefail
 
-NCORES=32
+NCORES=8
 
 input_dir="input"
 output_dir="output"
