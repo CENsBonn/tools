@@ -13,8 +13,4 @@ if [ "$task_count" -eq 0 ]; then
   exit 1
 fi
 
-if [ "$task_count" -eq 1 ]; then
-  echo -n "" > sbatch_parameters.txt
-else
-  echo -n "--array=1-$task_count" > sbatch_parameters.txt
-fi
+echo -n "--array=1-$task_count" > sbatch_parameters.txt
