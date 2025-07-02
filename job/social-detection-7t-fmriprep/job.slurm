@@ -7,7 +7,7 @@
 #SBATCH --mem-per-cpu=4gb
 #SBATCH --export=NONE
 #SBATCH --mail-type=END,FAIL,TIME_LIMIT
-#SBATCH --time=10:00:00
+#SBATCH --time=14:00:00
 
 set -Eeuo pipefail
 
