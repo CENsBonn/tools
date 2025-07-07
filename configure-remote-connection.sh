@@ -23,7 +23,7 @@ fi
 if ! grep -q "^Host ${HOST_NAME}$" "$HOME/.ssh/config"; then
 	cat <<EOF >> "$HOME/.ssh/config"
 Host marvin
-  HostName "${HOST_DOMAIN}"
+  HostName ${HOST_DOMAIN}
   User ${hpc_username}
   IdentityFile ${private_key_path}
   ControlMaster auto
