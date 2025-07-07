@@ -4,4 +4,4 @@ set -Eeuo pipefail
 
 script_dir="$(dirname "$(readlink -f "$0")")"
 
-ssh marvin ws_list -C | ./ws_list_to_json.py | jq -r 'to_entries[].key'
+ssh marvin ws_list -C | "${script_dir}/ws_list_to_json.py" | jq -r 'to_entries[].key'
