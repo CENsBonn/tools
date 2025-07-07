@@ -14,6 +14,12 @@ fi
 hpc_username="$1"
 private_key_path="$2"
 
+if [ ! -f "$HOME/.ssh/config" ]; then
+  mkdir -p "$HOME/.ssh"
+  touch "$HOME/.ssh/config"
+  chmod 600 "$HOME/.ssh/config"
+fi
+
 if ! grep -q "^Host ${HOST_NAME}$" "$HOME/.ssh/config"; then
 	cat <<EOF >> "$HOME/.ssh/config"
 Host marvin
